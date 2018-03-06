@@ -1,21 +1,12 @@
 using BinaryBuilder
 
-platforms = [
-  BinaryProvider.Windows(:i686),
-  BinaryProvider.Windows(:x86_64),
-  BinaryProvider.Linux(:i686, :glibc),
-  BinaryProvider.Linux(:x86_64, :glibc),
-  BinaryProvider.Linux(:aarch64, :glibc),
-  BinaryProvider.Linux(:armv7l, :glibc),
-  BinaryProvider.Linux(:powerpc64le, :glibc),
-  BinaryProvider.MacOS()
-]
-
+# Collection of sources required to build Ogg
 sources = [
     "https://downloads.xiph.org/releases/ogg/libogg-1.3.3.tar.gz" =>
     "c2e8a485110b97550f453226ec644ebac6cb29d1caef2902c007edab4308d985",
 ]
 
+# Bash recipe for building across all platforms
 script = raw"""
 cd $WORKSPACE/srcdir/libogg-1.3.3
 
@@ -24,21 +15,27 @@ make -j${nproc}
 make install
 """
 
-products = prefix -> [
-  LibraryProduct(prefix, "libogg"),
+# These are the platforms we will build for by default, unless further
+# platforms are passed in on the command line
+platforms = [
+    Windows(:i686),
+    Windows(:x86_64),
+    Linux(:i686, :glibc),
+    Linux(:x86_64, :glibc),
+    Linux(:aarch64, :glibc),
+    Linux(:armv7l, :glibc),
+    Linux(:powerpc64le, :glibc),
+    MacOS()
 ]
 
-# Be quiet unless we've passed `--verbose`
-verbose = "--verbose" in ARGS
-ARGS = filter!(x -> x != "--verbose", ARGS)
+# The products that we will ensure are always built
+products = prefix -> [
+    LibraryProduct(prefix, "libogg", :libogg),
+]
 
-# Choose which platforms to build for; if we've got an argument use that one,
-# otherwise default to just building all of them!
-build_platforms = platforms
-if length(ARGS) > 0
-    build_platforms = platform_key.(split(ARGS[1], ","))
-end
-info("Building for $(join(triplet.(build_platforms), ", "))")
+# Dependencies that must be installed before this package can be built
+dependencies = [
+]
 
-
-autobuild(pwd(), "Ogg", build_platforms, sources, script, products; verbose=verbose)
+# Build the tarballs, and possibly a `build.jl` as well.
+build_tarballs(ARGS, "Ogg", sources, script, platforms, products, dependencies)
