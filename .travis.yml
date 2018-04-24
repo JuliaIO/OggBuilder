@@ -39,9 +39,9 @@ deploy:
   api_key:
     # Note; this api_key is only valid for staticfloat/OggBuilder; you need
     # to make your own: https://docs.travis-ci.com/user/deployment/releases/
-    secure: 
+    secure: M4xIzaKQDHpJi+ygL9pRzmhCcpkmIJbKZlO6ROgHcK9qNxrAt+tXXQj27EQ8SLLSBXNLEB0pQMFyJRxN8dF3LEc7RpZEdzVAnyqH9tor9/tq2DgeIKOIRN+sLfqxmXVLaIZ8gjkWkHhBXG7K/OsVE+lt0Zq8LEkZ86Aj3EweEy5/GMGNG+M9a3IceQRn4CJfTg1EZOGmUezAI/G0G7Pyz+i0MXwvRrVso4Soik+YbTYO58FeIoDQ9RA+OWjKcfwiCRD1oPi0oZqsh/Woc3QzZgMKoeFm1R4excNQAc9C5sUkD4ZecrWbcewYe4PmzYx30xRClo9Ss4sYYwgV5Mrj8i69zSuuPXeyQ4Acd6QU3cBB9qCTrZYnNSdXSuz+J6CJ5bm1N3Ly9K0lUteRvb+U1Jzzy30CkAsjbPQGjNmm/t9Fn21iOWU2M6qb0MmOsQk7ep65cADCP/tYp6O4ltG/ezrtCMAbBJ6jYYh/EOvBxiJwKiEUrUWrrwUToO8rstrWgjNSj3NmMdctSWsUEqlIP9DBDS8PPRvX8nuhsSDD+Eti0ky0keYX7rN3uIrrzuPszKHvznOglnPujCOom6IfevhoCfmLv2FmOlrQXX2LcRZt5O0QejW5qcyMmI52mnrMFiqar9mQz0obCv9NcsnZw/acDntIfkabz9lYs107z4s=
   file_glob: true
-  file: products/*.tar.gz
+  file: products/*
   skip_cleanup: true
   on:
     repo: staticfloat/OggBuilder
