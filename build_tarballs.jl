@@ -35,7 +35,7 @@ platforms = [
 
     # The BSD's
     FreeBSD(:x86_64),
-    MacOS()
+    MacOS(),
 ]
 
 # The products that we will ensure are always built
