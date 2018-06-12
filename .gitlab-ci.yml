@@ -2,6 +2,10 @@ before_script:
     - set
 
 julia_version:
-    image: julia:0.6
+    image: staticfloat/binarybuilder.jl:v0.6-master
     script:
-        - julia -e 'version_info()'
+        - julia -e 'versioninfo()'
+        - ls -la
+        - pwd
+        - julia --color=yes build_tarballs.jl --verbose
+
