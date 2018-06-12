@@ -2,4 +2,5 @@ before_script:
     - set
 
 julia_version:
-    - julia -e 'version_info()'
+    script:
+        - julia -e 'version_info()'
