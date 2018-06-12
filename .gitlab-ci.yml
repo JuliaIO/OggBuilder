@@ -1,7 +1,6 @@
 build:
     image: staticfloat/binarybuilder.jl:v0.6-master
     script:
-        - sleep 1000
         - julia --color=yes build_tarballs.jl --verbose
     artifacts:
         paths:
