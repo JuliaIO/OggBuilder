@@ -1,11 +1,8 @@
-before_script:
-    - set
-
-julia_version:
+build:
     image: staticfloat/binarybuilder.jl:v0.6-master
     script:
-        - julia -e 'versioninfo()'
-        - ls -la
-        - pwd
         - julia --color=yes build_tarballs.jl --verbose
+    artifacts:
+        paths:
+            - products/
 
