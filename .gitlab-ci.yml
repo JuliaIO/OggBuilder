@@ -3,6 +3,6 @@ build:
     script:
         - julia --color=yes build_tarballs.jl --verbose
         # On tagged releases, upload our releases to github releases 
-        - if [[ -n "${CI_COMMIT_TAG}" ]]; then \
-              ghr --user staticfloat --repo OggBuilder ${CI_COMMIT_TAG} products/; \
+        - if [[ -n "${CI_COMMIT_TAG}" ]]; then
+              ghr --user staticfloat --repo OggBuilder ${CI_COMMIT_TAG} products/;
           fi
