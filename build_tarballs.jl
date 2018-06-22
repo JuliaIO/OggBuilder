@@ -1,14 +1,15 @@
 using BinaryBuilder
 
 # Collection of sources required to build Ogg
+ogg_version = v"1.3.3"
 sources = [
-    "https://downloads.xiph.org/releases/ogg/libogg-1.3.3.tar.gz" =>
+    "https://downloads.xiph.org/releases/ogg/libogg-$(ogg_version).tar.gz" =>
     "c2e8a485110b97550f453226ec644ebac6cb29d1caef2902c007edab4308d985",
 ]
 
 # Bash recipe for building across all platforms
 script = raw"""
-cd $WORKSPACE/srcdir/libogg-1.3.3
+cd $WORKSPACE/srcdir/libogg-*/
 
 ./configure --prefix=$prefix --host=${target}
 make -j${nproc}
@@ -48,4 +49,4 @@ dependencies = [
 ]
 
 # Build the tarballs, and possibly a `build.jl` as well.
-build_tarballs(ARGS, "Ogg", sources, script, platforms, products, dependencies)
+build_tarballs(ARGS, "Ogg", ogg_version, sources, script, platforms, products, dependencies)
