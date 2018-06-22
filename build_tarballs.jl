@@ -1,6 +1,7 @@
 using BinaryBuilder
 
 # Collection of sources required to build Ogg
+name = "Ogg"
 version = v"1.3.3"
 sources = [
     "https://downloads.xiph.org/releases/ogg/libogg-$(version).tar.gz" =>
@@ -49,4 +50,4 @@ dependencies = [
 ]
 
 # Build the tarballs, and possibly a `build.jl` as well.
-build_tarballs(ARGS, "Ogg", version, sources, script, platforms, products, dependencies)
+build_tarballs(ARGS, name, version, sources, script, platforms, products, dependencies)
